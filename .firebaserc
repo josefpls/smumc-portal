@@ -1,0 +1,8 @@
+{
+  "projects": {
+    "default": "smumc-portal-test",
+    "production": "smumc-portal"
+  },
+  "targets": {},
+  "etags": {}
+}
