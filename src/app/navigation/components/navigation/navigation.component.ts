@@ -9,6 +9,12 @@ import { AuthenticationService } from 'src/app/authentication/services/authentic
 })
 export class NavigationComponent {
 
+  navLinks: Array<{ url: string, text: string}> = [
+    { url: "/main/chats", text: "Groupchats" },
+    { url: "/main/members", text: "Members" },
+    { url: "/main/organizations", text: "Lay Organizations" },
+  ];
+
   constructor(
     private _authService: AuthenticationService,
     private _router: Router
