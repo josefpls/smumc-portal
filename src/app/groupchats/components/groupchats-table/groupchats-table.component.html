@@ -1,0 +1,18 @@
+<table class="w-full text-center">
+    <thead>
+        <tr>
+            <th class="p-3 bg-sky-400 rounded-tl-2xl">Date created</th>
+            <th class="p-3 bg-sky-400">Groupchat Name</th>
+            <th class="p-3 bg-sky-400">Link</th>
+            <th class="p-3 bg-sky-400 rounded-tr-2xl">Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let chat of groupchats; let i = index" [ngClass]="{'bg-red-100': i % 2 != 0, 'bg-slate-100': i % 2 == 0}">
+            <td class="p-3"> {{ chat["created"]["seconds"] * 1000 | date: "longDate" }} </td>
+            <td class="p-3"> {{ chat["name"] }} </td>
+            <td class="p-3"><a class="hover:text-sky-900" [href]="chat['link']" target="_blank">{{ chat["link"] }}</a></td>
+            <td class="p-3">  </td>
+        </tr>
+    </tbody>
+</table>
