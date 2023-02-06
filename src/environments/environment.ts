@@ -12,5 +12,6 @@ export const environment = {
     },
     collection: [
         "users",
+        "groupchats",
     ]
 }

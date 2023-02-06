@@ -1,0 +1,40 @@
+<p class="text-5xl mb-5">New Groupchat</p>
+<div class="flex gap-3">
+    <div class="w-1/3">
+        <div class="bg-sky-200 rounded-t-lg">
+            <div class="flex justify-end">
+                <button class="p-2 rounded-tr-lg hover:bg-sky-500 transition" (click)="_location.back()">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <form class="bg-sky-300 rounded-b-lg shadow p-5" [formGroup]="groupchatForm" (ngSubmit)="submitForm()">
+            <div class="flex flex-col gap-1 mb-3">
+                <label for="groupchatName"> Name </label>
+                <input type="text" name="groupchatName" id="groupchatName" class="p-3 shadow rounded-lg" formControlName="name">
+            </div>
+            <div class="flex flex-col gap-1 mb-3">
+                <label for="groupchatLink"> Link </label>
+                <input type="text" name="groupchatLink" id="groupchatLink" class="p-3 shadow rounded-lg" formControlName="link">
+            </div>
+            <div class="text-center">
+                <button type="submit" class="px-5 py-2  rounded-lg" [ngClass]="{'bg-slate-100': !groupchatForm.valid, 'shadow bg-red-100 hover:bg-red-300 transition': groupchatForm.valid}" [disabled]="!groupchatForm.valid">
+                    Save 
+                </button>
+            </div>
+        </form>
+    </div>
+    <div class="w-1/3">
+        <ng-container *ngIf="groupchatForm.controls['name'].touched">
+            <div class="py-2 px-3 text-slate-50 w-full bg-red-500 shadow-lg rounded-lg mb-3" *ngIf="groupchatForm.controls['name'].hasError('required')"> A groupchat should have a name </div>
+        </ng-container>
+        <ng-container *ngIf="groupchatForm.controls['link'].touched">
+            <div class="py-2 px-3 text-slate-50 w-full bg-red-500 shadow-lg rounded-lg" *ngIf="groupchatForm.controls['link'].hasError('required')"> A groupchat should have a link </div>
+        </ng-container>
+        <ng-container *ngIf="notification">
+            <div class="py-2 px-3 text-slate-50 w-full bg-red-500 shadow-lg rounded-lg"> {{ notification }} </div>
+        </ng-container>
+    </div>
+</div>
