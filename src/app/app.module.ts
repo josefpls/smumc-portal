@@ -15,8 +15,8 @@ const baseRoutes: Routes = [
   { path: "login", component: LoginComponent },
   { path: "register", component: RegistrationComponent },
   { path: "main", component: NavigationComponent, children: [
-    // { path: "", redirectTo: "login", pathMatch: "full" },
-    // { path: "login", component: LoginComponent },
+    { path: "", redirectTo: "chats", pathMatch: "full" },
+    { path: "chats", loadChildren: () => import("./groupchats/modules/groupchats/groupchats.module").then(m => m.GroupchatsModule) },
   ]}
 ];
 
