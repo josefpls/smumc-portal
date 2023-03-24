@@ -1,18 +1,47 @@
-<table class="w-full text-center">
-    <thead>
-        <tr>
-            <th class="p-3 bg-sky-400 rounded-tl-2xl">Date created</th>
-            <th class="p-3 bg-sky-400">Groupchat Name</th>
-            <th class="p-3 bg-sky-400">Link</th>
-            <th class="p-3 bg-sky-400 rounded-tr-2xl">Actions</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr *ngFor="let chat of groupchats; let i = index" [ngClass]="{'bg-red-100': i % 2 != 0, 'bg-slate-100': i % 2 == 0}">
-            <td class="p-3"> {{ chat["created"]["seconds"] * 1000 | date: "longDate" }} </td>
-            <td class="p-3"> {{ chat["name"] }} </td>
-            <td class="p-3"><a class="hover:text-sky-900" [href]="chat['link']" target="_blank">{{ chat["link"] }}</a></td>
-            <td class="p-3">  </td>
-        </tr>
-    </tbody>
+<!-- <table class="w-full text-center"> -->
+<!--     <thead> -->
+<!--         <tr> -->
+<!--             <th class="p-3 bg-sky-400 rounded-tl-2xl">Date created</th> -->
+<!--             <th class="p-3 bg-sky-400">Groupchat Name</th> -->
+<!--             <th class="p-3 bg-sky-400">Link</th> -->
+<!--             <th class="p-3 bg-sky-400 rounded-tr-2xl">Actions</th> -->
+<!--         </tr> -->
+<!--     </thead> -->
+<!--     <tbody> -->
+<!--         <tr *ngFor="let chat of groupchats; let i = index" [ngClass]="{'bg-red-100': i % 2 != 0, 'bg-slate-100': i % 2 == 0}"> -->
+<!--             <td class="p-3"> {{ chat["created"]["seconds"] * 1000 | date: "longDate" }} </td> -->
+<!--             <td class="p-3"> {{ chat["name"] }} </td> -->
+<!--             <td class="p-3"><a class="hover:text-sky-900" [href]="chat['link']" target="_blank">{{ chat["link"] }}</a></td> -->
+<!--             <td class="p-3">  </td> -->
+<!--         </tr> -->
+<!--     </tbody> -->
+<!-- </table> -->
+<table mat-table [dataSource]="myDataArray" class="mat-elevation-z3">
+    <tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>
+    <tr mat-row *matRowDef="let myRowData; columns: columnsToDisplay"></tr>
+    <ng-container matColumnDef="created">
+        <th mat-header-cell *matHeaderCellDef> Date Created </th>
+        <td mat-cell *matCellDef="let chat"> {{ chat["created"]["seconds"] * 1000 | date: "longDate" }} </td>
+    </ng-container>
+    <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef> Groupchat Name </th>
+        <td mat-cell *matCellDef="let chat"> {{ chat["name"] }} </td>
+    </ng-container>
+    <ng-container matColumnDef="link">
+        <th mat-header-cell *matHeaderCellDef> Score </th>
+        <td mat-cell *matCellDef="let chat">
+            <a [href]="chat['link']" target="_blank" matTooltip="Open {{ chat['link'] }}">{{ chat["link"] }}</a>
+        </td>
+    </ng-container>
+    <ng-container matColumnDef="actions">
+        <th mat-header-cell *matHeaderCellDef> Actions </th>
+        <td mat-cell *matCellDef="let chat">
+            <button type="button" mat-icon-button matTooltip="Edit">
+                <mat-icon>edit</mat-icon>
+            </button>
+        </td>
+    </ng-container>
 </table>
+<div class="d-flex justify-content-center py-5" *ngIf="!myDataArray">
+    <mat-spinner></mat-spinner>
+</div>

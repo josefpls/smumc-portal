@@ -7,6 +7,7 @@ import { AuthenticationService } from '../../services/authentication.service';
 import { LoginComponent } from '../../components/login/login.component';
 import { RegistrationComponent } from '../../components/registration/registration.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MaterialModule } from 'src/app/shared/modules/material/material.module';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     CommonModule,
     RouterModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MaterialModule
   ],
   exports: [
     LoginComponent,
