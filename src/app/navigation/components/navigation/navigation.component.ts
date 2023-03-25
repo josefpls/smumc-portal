@@ -15,6 +15,7 @@ export class NavigationComponent {
     navLinks: Array<{ url: string, text: string}> = [
         { url: "/main/chats", text: "Groupchats" },
         { url: "/main/members", text: "Members" },
+        { url: "/main/ministries", text: "Ministries" },
         { url: "/main/organizations", text: "Lay Organizations" },
     ];
 
