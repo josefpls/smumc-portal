@@ -1,0 +1,34 @@
+<div class="d-flex justify-content-between align-items-center mb-3">
+    <h1 class="m-0">New Member</h1>
+    <button type="button" color="accent" mat-mini-fab (click)="_location.back()">
+        <mat-icon>arrow_back</mat-icon>
+    </button>
+</div>
+<mat-spinner *ngIf="memberForm === undefined"></mat-spinner>
+<mat-card class="col-12 col-sm-6 col-lg-4" *ngIf="memberForm !== undefined">
+    <mat-card-content>
+        <form class="d-flex flex-column" [formGroup]="memberForm" (ngSubmit)="onSaveMemberClicked()">
+            <mat-form-field appearance="outline">
+                <mat-label for="firstName">First Name</mat-label>
+                <input matInput type="text" name="firstName" id="firstName" color="accent" formControlName="first_name">
+            </mat-form-field> 
+            <mat-form-field appearance="outline">
+                <mat-label for="middleName">Middle Name</mat-label>
+                <input matInput type="text" name="middleName" id="middleName" color="accent" formControlName="middle_name">
+            </mat-form-field> 
+            <mat-form-field appearance="outline">
+                <mat-label for="lastName">Last Name</mat-label>
+                <input matInput type="text" name="lastName" id="lastName" color="accent" formControlName="last_name">
+            </mat-form-field> 
+            <mat-form-field appearance="outline">
+                <mat-label for="birthday">Birthday</mat-label>
+                <input matInput [matDatepicker]="picker" formControlName="birthday" matTooltip="MM/DD/YYYY">
+                <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+            </mat-form-field>
+            <div class="text-center">
+                <button color="accent" type="submit" mat-raised-button [disabled]="!memberForm.valid">Save Member</button>
+            </div>
+        </form>
+    </mat-card-content>
+</mat-card>

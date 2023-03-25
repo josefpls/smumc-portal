@@ -11,28 +11,29 @@ import { RegistrationComponent } from './authentication/components/registration/
 import { NavigationComponent } from './navigation/components/navigation/navigation.component';
 
 const baseRoutes: Routes = [
-  { path: "", redirectTo: "login", pathMatch: "full" },
-  { path: "login", component: LoginComponent },
-  { path: "register", component: RegistrationComponent },
-  { path: "main", component: NavigationComponent, children: [
-    { path: "", redirectTo: "chats", pathMatch: "full" },
-    { path: "chats", loadChildren: () => import("./groupchats/modules/groupchats/groupchats.module").then(m => m.GroupchatsModule) },
-  ]}
+    { path: "", redirectTo: "login", pathMatch: "full" },
+    { path: "login", component: LoginComponent },
+    { path: "register", component: RegistrationComponent },
+    { path: "main", component: NavigationComponent, children: [
+        { path: "", redirectTo: "chats", pathMatch: "full" },
+        { path: "chats", loadChildren: () => import("./groupchats/modules/groupchats/groupchats.module").then(m => m.GroupchatsModule) },
+        { path: "members", loadChildren: () => import("./members/modules/members/members.module").then(m => m.MembersModule) },
+    ]}
 ];
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    NavigationComponent,
-  ],
-  imports: [
-    BrowserModule,
-    RouterModule.forRoot(baseRoutes, { useHash: true }),
-    AuthenticationModule,
-    BrowserAnimationsModule,
-    MaterialModule
-  ],
-  providers: [],
-  bootstrap: [AppComponent]
+    declarations: [
+        AppComponent,
+        NavigationComponent,
+    ],
+    imports: [
+        BrowserModule,
+        RouterModule.forRoot(baseRoutes, { useHash: true }),
+        AuthenticationModule,
+        BrowserAnimationsModule,
+        MaterialModule
+    ],
+    providers: [],
+    bootstrap: [AppComponent]
 })
 export class AppModule { }

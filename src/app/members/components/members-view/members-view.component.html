@@ -1,0 +1,14 @@
+<ng-container *ngIf="memberData">
+    <h2 mat-dialog-title>{{ memberData["first_name"] }} {{ memberData["middle_name"] }} {{ memberData["last_name"] }}</h2>
+    <mat-dialog-content>
+        <p>
+        <b>Birthday:</b> {{ memberData["birthday"]["seconds"] * 1000 | date: "longDate" }} <br><br>
+        <b>Created:</b> {{ memberData["created"]["seconds"] * 1000 | date: "longDate" }} <br>
+        <b>Last Modified:</b> {{ memberData["modified"]["seconds"] * 1000 | date: "longDate" }}
+        </p>
+    </mat-dialog-content>
+    <mat-dialog-actions class="d-flex justify-content-center g-3">
+        <button mat-raised-button color="primary" (click)="editMember()">Edit</button>
+        <button mat-raised-button color="accent" mat-dialog-close>Close</button>
+    </mat-dialog-actions>
+</ng-container>
