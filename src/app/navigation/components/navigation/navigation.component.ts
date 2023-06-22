@@ -17,6 +17,7 @@ export class NavigationComponent {
         { url: "/main/members", text: "Members" },
         { url: "/main/ministries", text: "Ministries" },
         { url: "/main/organizations", text: "Lay Organizations" },
+        { url: "/main/finance", text: "Finance" },
     ];
 
     constructor(
@@ -25,8 +26,8 @@ export class NavigationComponent {
         private _changeDetectorRef: ChangeDetectorRef,
         private _media: MediaMatcher
     ) { 
-        this.mobileQuery = _media.matchMedia('(max-width: 768px)');
-        this._mobileQueryListener = () => _changeDetectorRef.detectChanges();
+        this.mobileQuery = this._media.matchMedia('(max-width: 768px)');
+        this._mobileQueryListener = () => this._changeDetectorRef.detectChanges();
         this.mobileQuery.addListener(this._mobileQueryListener);
     }
 
