@@ -1,0 +1,22 @@
+.top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1em;
+}
+
+.top > h2 {
+    margin: 0;
+}
+
+.general {
+    margin-bottom: 1em;
+}
+
+.search {
+    margin-bottom: .5em;
+}
+
+mat-form-field {
+    width: 100%;
+}
