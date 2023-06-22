@@ -14,6 +14,9 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatDialogModule } from '@angular/material/dialog'; 
+import { MatSnackBarModule } from '@angular/material/snack-bar'; 
+import { MatTabsModule } from '@angular/material/tabs'; 
+import { MatGridListModule } from '@angular/material/grid-list'; 
 
 @NgModule({
     declarations: [],
@@ -32,6 +35,9 @@ import { MatDialogModule } from '@angular/material/dialog';
         MatDatepickerModule,
         MatNativeDateModule,
         MatDialogModule,
+        MatSnackBarModule,
+		MatTabsModule,
+        MatGridListModule,
     ],
     exports: [
         MatSidenavModule,
@@ -47,6 +53,9 @@ import { MatDialogModule } from '@angular/material/dialog';
         MatDatepickerModule,
         MatNativeDateModule,
         MatDialogModule,
+        MatSnackBarModule,
+		MatTabsModule,
+        MatGridListModule,
     ]
 })
 export class MaterialModule { }
