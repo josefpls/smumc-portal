@@ -1,14 +1,14 @@
-<mat-toolbar color="primary" class="d-flex justify-content-between sticky-top">
+<mat-toolbar class="d-flex justify-content-between sticky-top text-bg-primary">
     <div class="d-flex align-items-center">
-        <button class="me-3" mat-mini-fab type="button" (click)="side.toggle()">
-            <mat-icon fontIcon="menu"></mat-icon>
+        <button class="me-3 btn btn-warning" type="button" (click)="side.toggle()">
+            <i class="bi bi-list"></i>
         </button>
         <span>SMUMC Portal</span>
     </div>
-    <button type="button" color="accent" mat-raised-button (click)="logout()">Logout</button>
+    <button type="button" class="btn btn-warning" (click)="logout()">Logout</button>
 </mat-toolbar>
 <mat-sidenav-container>
-    <mat-sidenav #side class="col-12 col-sm-6 col-md-3 col-lg-2 bg-light mat-elevation-z4 border-0" [mode]="mobileQuery.matches ? 'over' : 'side'" [opened]="mobileQuery.matches ? false : true" fixedInViewport>
+    <mat-sidenav #side class="col-12 col-sm-6 col-md-3 col-lg-2 bg-light shadow border-0" [mode]="mobileQuery.matches ? 'over' : 'side'" [opened]="mobileQuery.matches ? false : true" fixedInViewport>
         <mat-toolbar color="primary" class="d-flex justify-content-between">
             <span class="flex">SMUMC Portal</span>
             <button class="flex" mat-mini-fab type="button" (click)="side.toggle()">
@@ -16,9 +16,14 @@
             </button>
         </mat-toolbar>
         <div class="d-flex flex-column">
-            <a class="p-3 text-center text-decoration-none" *ngFor="let link of navLinks" [routerLink]="link['url']" routerLinkActive="bg-primary text-light">
+            <ul class="list-group m-3">
+                <li role="button" class="list-group-item" *ngFor="let link of navLinks" [routerLink]="link['url']" routerLinkActive="bg-primary text-light">
+                    {{ link["text"] }}
+                </li>
+            </ul>
+            <!-- <a class="p-3 text-center text-decoration-none" *ngFor="let link of navLinks" [routerLink]="link['url']" routerLinkActive="bg-primary text-light">
                 {{ link["text"] }}
-            </a>
+            </a> -->
         </div>
     </mat-sidenav>
     <mat-sidenav-content>
