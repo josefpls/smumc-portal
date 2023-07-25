@@ -1,23 +1,19 @@
 <div class="h-100 d-flex bg-light justify-content-center align-items-center">
-    <mat-card class="w-25 mat-elevation-z4">
-        <mat-card-header class="mb-3">
-            <mat-card-title> Login </mat-card-title>
-        </mat-card-header>
-        <mat-card-content>
+    <div class="card border-primary shadow" style="width: 450px">
+        <span class="card-header text-bg-primary">Login</span>
+        <div class="card-body">
             <form class="d-flex flex-column" [formGroup]="loginForm" (ngSubmit)="submitForm()">
-                <mat-form-field appearance="outline">
-                    <mat-label for="email"> Email: </mat-label>
-                    <input matInput type="text" name="email" id="email" formControlName="email">
-                </mat-form-field>
-                <mat-form-field appearance="outline">
-                    <mat-label for="password"> Password: </mat-label>
-                    <input matInput type="password" name="password" id="password" formControlName="password">
-                </mat-form-field>
-                <div class="d-flex justify-content-center gap-3">
-                    <button type="submit" mat-raised-button color="primary" [disabled]="!loginForm.valid">Log In</button>
-                    <a role="button" mat-raised-button [routerLink]="'/register'">Sign Up</a>
+                <input type="text" id="email" name="email" class="form-control mb-3" placeholder="Email" formControlName="email">
+                <div class="input-group mb-3">
+                    <input [type]="showPassword ? 'text' : 'password'" id="password" name="password" class="form-control" placeholder="Password" formControlName="password">
+                    <button type="button" class="btn btn-primary" (mousedown)="togglePassword()" (mouseup)="togglePassword()">
+                        <i class="bi bi-eye-fill"></i>
+                    </button>
+                </div>
+                <div class="text-center">
+                    <button type="submit" class="btn btn-primary" [disabled]="!loginForm.valid">Login</button>
                 </div>
             </form>
-        </mat-card-content>
-    </mat-card>
+        </div>
+    </div>
 </div>
