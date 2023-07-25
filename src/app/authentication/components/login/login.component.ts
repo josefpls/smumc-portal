@@ -13,6 +13,7 @@ import { AuthenticationService } from '../../services/authentication.service';
 export class LoginComponent implements OnInit {
 
     loginForm!: FormGroup;
+    showPassword: boolean = false;
 
     constructor(
         private _authService: AuthenticationService,
@@ -45,6 +46,10 @@ export class LoginComponent implements OnInit {
                 duration: 2000
             });
         });
+    }
+
+    togglePassword(): void {
+        this.showPassword = !this.showPassword;
     }
 
 }
