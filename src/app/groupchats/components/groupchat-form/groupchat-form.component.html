@@ -1,23 +1,21 @@
 <div class="d-flex justify-content-between align-items-center mb-3">
     <h1 class="m-0">New Groupchat</h1>
-    <button type="button" mat-mini-fab (click)="_location.back()" matTooltip="Back">
-        <mat-icon>arrow_back</mat-icon>
+    <button type="button" class="btn btn-warning" (click)="_location.back()" matTooltip="Back">
+        <i class="bi bi-arrow-left"></i>
     </button>
 </div>
-<mat-card class="col-12 col-sm-6 col-md-4 mat-elevation-z4">
-    <mat-card-content>
-        <form class="d-flex flex-column" [formGroup]="groupchatForm" (ngSubmit)="submitForm()">
-            <mat-form-field appearance="outline">
-                <mat-label for="groupchatName"> Name </mat-label>
-                <input matInput type="text" name="groupchatName" id="groupchatName" formControlName="name">
-            </mat-form-field>
-            <mat-form-field appearance="outline">
-                <mat-label for="groupchatLink"> Link </mat-label>
-                <input matInput type="text" name="groupchatLink" id="groupchatLink" formControlName="link">
-            </mat-form-field>
-            <div class="text-center">
-                <button type="submit" mat-raised-button color="accent" [disabled]="!groupchatForm.valid"> Save </button>
-            </div>
-        </form>
-    </mat-card-content>
-</mat-card>
+<div class="col-12 col-sm-10 col-md-6 col-lg-4">
+    <div class="card border-primary">
+        <span class="card-header text-bg-primary">Groupchat</span>
+        <div class="card-body">
+            <form class="d-flex flex-column" [formGroup]="groupchatForm" (ngSubmit)="submitForm()">
+                <input type="text" class="form-control" name="groupchatName" id="groupchatName" formControlName="name" placeholder="Name">
+                <input type="text" class="form-control my-3" name="groupchatLink" id="groupchatLink" formControlName="link" placeholder="Link">
+                <div class="text-center">
+                    <button type="submit" class="btn btn-primary" [disabled]="!groupchatForm.valid"> Save </button>
+
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
