@@ -1,13 +1,9 @@
 <h1>Finance</h1>
-<mat-tab-group>
-	<mat-tab label="Dashboard">
-		<ng-template matTabContent>
-			<app-finance-dashboard></app-finance-dashboard>
-		</ng-template>
-	</mat-tab>
-	<mat-tab label="Records">
-		<ng-template matTabContent>
-			<app-finance-records></app-finance-records>
-		</ng-template>
-	</mat-tab>
-</mat-tab-group>
+<ul class="nav nav-tabs">
+	<li class="nav-item" *ngFor="let tab of financeTabs">
+	  <a class="nav-link" aria-current="page" [routerLink]="tab['path']" routerLinkActive="active">{{ tab["name"] }}</a>
+	</li>
+</ul>
+<div class="p-3 border-start border-end border-bottom">
+	<router-outlet></router-outlet>
+</div>

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
+import { BehaviorSubject } from 'rxjs';
 import { MembersService } from 'src/app/members/services/members.service';
 
 @Component({
@@ -11,10 +11,10 @@ import { MembersService } from 'src/app/members/services/members.service';
 export class FinanceFormComponent implements OnInit {
 
 	members: Array<any> = [];
+	filteredMembers: BehaviorSubject<any> = new BehaviorSubject([]);
 	dateToday: Date = new Date();
 
-	displayedColumns: Array<string> = ["name", "tithes", "pledges", "mission", "vehicle"];
-	dataSource!: MatTableDataSource<any>;
+	displayedColumns: Array<string> = ["Name", "Tithes", "Pledges", "Mission", "Vehicle"];
 
 	constructor(
 		private _memberService: MembersService,
@@ -23,10 +23,6 @@ export class FinanceFormComponent implements OnInit {
 
 	ngOnInit(): void {
 		this.getMembers();
-	}
-
-	initializeTable(data: any) {
-		this.dataSource = new MatTableDataSource(data);
 	}
 
 	getMembers() {
@@ -41,12 +37,13 @@ export class FinanceFormComponent implements OnInit {
 					vehicle: 0
 				}
 			});
-			this.initializeTable(this.members);
+			this.filteredMembers.next(this.members);
 		})
 	}
 
-	searchMember(searchValue: string) {
-		this.dataSource.filter = searchValue.toUpperCase();
+	searchMember(event: Event) {
+		let members: Array<any> = this.members.filter(x => x["name"].includes((event.target as HTMLInputElement).value));
+		this.filteredMembers.next(members);
 	}
 
 	onBackClicked() {

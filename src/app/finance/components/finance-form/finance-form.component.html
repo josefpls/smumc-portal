@@ -1,52 +1,31 @@
 <div class="top">
     <h2>New Record for {{ dateToday | date: "longDate" }} </h2>
-    <button mat-raised-button color="accent" (click)="onBackClicked()"> Back </button>
+    <button class="btn btn-warning" (click)="onBackClicked()"> Back </button>
 </div>
 
-<mat-card class="general">
-    <mat-card-content>Hee hee</mat-card-content>
-</mat-card>
+<input type="text" class="form-control mb-3" placeholder="Search" (keyup)="searchMember($event)">
 
-<div class="mat-elevation-z3">
-    <mat-form-field>
-        <mat-label>Search for member</mat-label>
-        <input type="text" matInput (keyup)="searchMember($any($event.target).value)">
-    </mat-form-field>
-    <table mat-table [dataSource]="dataSource">
-        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-        <!-- Name -->
-        <ng-container matColumnDef="name">
-            <th mat-header-cell *matHeaderCellDef> Name </th>
-            <td mat-cell *matCellDef="let member"> {{ member["name"] | uppercase }} </td>
-        </ng-container>
-        <!-- Tithes -->
-        <ng-container matColumnDef="tithes">
-            <th mat-header-cell *matHeaderCellDef> Tithes </th>
-            <td mat-cell *matCellDef="let member">
-                <input type="number" [(ngModel)]="member['tithes']" min="0">
+<table class="table align-middle">
+    <thead>
+        <tr>
+            <th *ngFor="let column of displayedColumns"> {{ column }} </th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let member of filteredMembers | async">
+            <td style="min-width: 300px;">{{ member["name"] }}</td>
+            <td>
+                <input type="number" class="form-control" [value]="member['tithes']">
             </td>
-        </ng-container>
-        <!-- Pledges -->
-        <ng-container matColumnDef="pledges">
-            <th mat-header-cell *matHeaderCellDef> Pledges </th>
-            <td mat-cell *matCellDef="let member">
-                <input type="number" [(ngModel)]="member['pledges']" min="0">
+            <td>
+                <input type="number" class="form-control" [value]="member['pledges']">
             </td>
-        </ng-container>
-        <!-- Mission -->
-        <ng-container matColumnDef="mission">
-            <th mat-header-cell *matHeaderCellDef> Mission </th>
-            <td mat-cell *matCellDef="let member">
-                <input type="number" [(ngModel)]="member['mission']" min="0">
+            <td>
+                <input type="number" class="form-control" [value]="member['mission']">
             </td>
-        </ng-container>
-        <!-- Vehicle -->
-        <ng-container matColumnDef="vehicle">
-            <th mat-header-cell *matHeaderCellDef> Vehicle </th>
-            <td mat-cell *matCellDef="let member">
-                <input type="number" [(ngModel)]="member['vehicle']" min="0">
+            <td>
+                <input type="number" class="form-control" [value]="member['vehicle']">
             </td>
-        </ng-container>
-    </table>
-</div>
+        </tr>
+    </tbody>
+</table>

@@ -7,4 +7,9 @@ import { Component } from '@angular/core';
 })
 export class FinanceComponent {
 
+  financeTabs: Array<{name: string, path: string}> = [
+    { name: "Dashboard", path: "dashboard" },
+    { name: "Records", path: "records" },
+  ];
+
 }

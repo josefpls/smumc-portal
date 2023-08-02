@@ -11,7 +11,11 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 const financeRoutes: Routes = [
 	{ path: "", redirectTo: "manage", pathMatch: "full" },
-	{ path: "manage", component: FinanceComponent },
+	{ path: "manage", component: FinanceComponent, children: [
+        { path: "", redirectTo: "dashboard", pathMatch: "full" },
+        { path: "dashboard", component: FinanceDashboardComponent },
+        { path: "records", component: FinanceRecordsComponent }
+    ]},
     { path: "form", component: FinanceFormComponent }
 ]
 
