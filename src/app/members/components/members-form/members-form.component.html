@@ -1,34 +1,40 @@
 <div class="d-flex justify-content-between align-items-center mb-3">
-    <h1 class="m-0">New Member</h1>
-    <button type="button" color="accent" mat-mini-fab (click)="_location.back()">
-        <mat-icon>arrow_back</mat-icon>
+    <h1 class="m-0" *ngIf="selectedMemberId === 'new'; else hasMember">New Member</h1>
+    <ng-template #hasMember><h1 class="m-0">Update Member</h1></ng-template>
+    <button type="button" class="btn btn-warning" matTooltip="Back" (click)="_location.back()">
+        <i class="bi bi-arrow-left"></i>
     </button>
 </div>
-<mat-spinner *ngIf="memberForm === undefined"></mat-spinner>
-<mat-card class="col-12 col-sm-6 col-lg-4" *ngIf="memberForm !== undefined">
-    <mat-card-content>
-        <form class="d-flex flex-column" [formGroup]="memberForm" (ngSubmit)="onSaveMemberClicked()">
-            <mat-form-field appearance="outline">
-                <mat-label for="firstName">First Name</mat-label>
-                <input matInput type="text" name="firstName" id="firstName" color="accent" formControlName="first_name">
-            </mat-form-field> 
-            <mat-form-field appearance="outline">
-                <mat-label for="middleName">Middle Name</mat-label>
-                <input matInput type="text" name="middleName" id="middleName" color="accent" formControlName="middle_name">
-            </mat-form-field> 
-            <mat-form-field appearance="outline">
-                <mat-label for="lastName">Last Name</mat-label>
-                <input matInput type="text" name="lastName" id="lastName" color="accent" formControlName="last_name">
-            </mat-form-field> 
-            <mat-form-field appearance="outline">
-                <mat-label for="birthday">Birthday</mat-label>
-                <input matInput [matDatepicker]="picker" formControlName="birthday" matTooltip="MM/DD/YYYY">
-                <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
-                <mat-datepicker #picker></mat-datepicker>
-            </mat-form-field>
-            <div class="text-center">
-                <button color="accent" type="submit" mat-raised-button [disabled]="!memberForm.valid">Save Member</button>
-            </div>
-        </form>
-    </mat-card-content>
-</mat-card>
+
+<div *ngIf="memberForm === undefined" class="spinner-border text-primary" role="status">
+    <span class="visually-hidden">Loading...</span>
+</div>
+
+<div class="col-12 col-sm-6 col-lg-4" *ngIf="memberForm !== undefined">
+    <div class="card border-primary">
+        <span class="card-header text-bg-primary">Member</span>
+        <div class="card-body">
+            <form class="d-flex flex-column" [formGroup]="memberForm" (ngSubmit)="onSaveMemberClicked()">
+                <div class="mb-3">
+                    <label for="firstName" class="form-label">First Name</label>
+                    <input class="form-control" type="text" name="firstName" id="firstName" color="accent" formControlName="first_name" [ngClass]="{'border-danger': memberForm.get('first_name')?.touched && !memberForm.get('first_name')?.valid}">
+                </div>
+                <div class="mb-3">
+                    <label for="middleName" class="form-label">Middle Name</label>
+                    <input class="form-control" type="text" name="middleName" id="middleName" color="accent" formControlName="middle_name">
+                </div>
+                <div class="mb-3">
+                    <label for="lastName" class="form-label">Last Name</label>
+                    <input class="form-control" type="text" name="lastName" id="lastName" color="accent" formControlName="last_name" [ngClass]="{'border-danger': memberForm.get('last_name')?.touched && !memberForm.get('last_name')?.valid}">
+                </div>
+                <div class="mb-3">
+                    <label for="birthday" class="form-label">Birthday</label>
+                    <input class="form-control" type="date" name="birthday" id="birthday" color="accent" formControlName="birthday">
+                </div>
+                <div class="text-center">
+                    <button type="submit" class="btn btn-warning" [ngClass]="{'disabled': !memberForm.valid}" [disabled]="!memberForm.valid">Save Member</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

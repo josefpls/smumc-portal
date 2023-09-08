@@ -14,5 +14,6 @@ export const environment = {
         "users",
         "groupchats",
         "members",
+        "ministries"
     ]
 }

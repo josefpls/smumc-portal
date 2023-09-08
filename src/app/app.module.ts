@@ -19,6 +19,7 @@ const baseRoutes: Routes = [
         { path: "chats", loadChildren: () => import("./groupchats/modules/groupchats/groupchats.module").then(m => m.GroupchatsModule) },
         { path: "members", loadChildren: () => import("./members/modules/members/members.module").then(m => m.MembersModule) },
         { path: "finance", loadChildren: () => import("./finance/modules/finance/finance.module").then(m => m.FinanceModule) },
+        { path: "ministries", loadChildren: () => import("./ministries/modules/ministries/ministries.module").then(m => m.MinistriesModule) },
     ]}
 ];
 
